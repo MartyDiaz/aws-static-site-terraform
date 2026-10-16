@@ -1,1 +1,6 @@
-# aws-static-stite-terraform
+.terrafor/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+.terraform.lock.hcl.bak
