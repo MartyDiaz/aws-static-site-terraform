@@ -14,3 +14,9 @@ variable "github_repo" {
   type        = string
 }
 
+variable "github_repo_subject" {
+  description = "GitHub OIDC subject prefix: OWNER@OWNER_ID/REPO@REPO_ID"
+  type        = string
+  default     = "MartyDiaz@67561284/aws-static-site-terraform@1422632721"
+}
+
