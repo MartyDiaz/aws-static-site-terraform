@@ -20,3 +20,8 @@ variable "github_repo_subject" {
   default     = "MartyDiaz@67561284/aws-static-site-terraform@1422632721"
 }
 
+variable "state_bucket_name" {
+  description = "Name of the S3 bucket that stores Terraform state"
+  type        = string
+  default     = "md0001-tfstate"
+}
