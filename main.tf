@@ -7,7 +7,17 @@ terraform {
       version = "~> 6.23.0"
     }
   }
+
+  backend "s3" {
+    bucket       = "md0001-tfstate"
+    key          = "static-site/terraform.tfstate"
+    region       = "us-west-2"
+    encrypt      = true
+    use_lockfile = true
+  }
 }
+
+
 
 provider "aws" {
   region = var.aws_region
