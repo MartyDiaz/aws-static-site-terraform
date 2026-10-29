@@ -1,3 +1,5 @@
+#Permissions for the GitHub Actions role. The trust policy is in github_oidc.tf. IAM changes must be applied manually.
+
 data "aws_iam_policy_document" "github_actions_permissions" {
   statement {
     sid     = "SiteBucket"

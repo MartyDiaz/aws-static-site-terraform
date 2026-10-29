@@ -18,14 +18,15 @@ terraform {
 }
 
 
-
 provider "aws" {
   region = var.aws_region
 }
 
+
 resource "aws_s3_bucket" "site" {
   bucket = var.bucket_name
 }
+
 
 resource "aws_s3_bucket_public_access_block" "site" {
   bucket                  = aws_s3_bucket.site.id
@@ -34,6 +35,7 @@ resource "aws_s3_bucket_public_access_block" "site" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+
 
 resource "aws_s3_object" "index" {
   key          = "index.html"
@@ -50,6 +52,7 @@ resource "aws_cloudfront_origin_access_control" "site" {
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
 }
+
 
 resource "aws_cloudfront_distribution" "site" {
   enabled             = true
@@ -81,6 +84,7 @@ resource "aws_cloudfront_distribution" "site" {
   }
 }
 
+
 data "aws_iam_policy_document" "site" {
   statement {
     sid       = "AllowCloudFrontRead"
@@ -99,6 +103,7 @@ data "aws_iam_policy_document" "site" {
     }
   }
 }
+
 
 resource "aws_s3_bucket_policy" "site" {
   bucket = aws_s3_bucket.site.id
