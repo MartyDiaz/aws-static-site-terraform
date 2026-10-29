@@ -56,9 +56,11 @@ On approval, the job exchanges a short-lived GitHub OIDC token for temporary AWS
 
 2. In main.tf set the backend "s3" block's bucket to your state bucket. 
 
-3. In variables.tf update state_bucket_name and github_repo to match yours.
+3. In variables.tf update state_bucket_name and github_repo_subject to match yours. Copy the example varialbes file and edit it.
+
 bucket_name = "your-globally-unique-site-bucket"
 github_repo = "YOUR-GITHUB-USERNAME/YOUR-REPO-NAME"
+
 github_repo_subject uses numeric IDs, in the form OWNER@OWNER_ID/REPO@REPO_ID. GitHub includes these IDs in its OIDC token subject. You can find them in the response from https://api.github.com/repos/OWNER/REPO (the repo id and owner.id fields).
 
 4. The pipeline cannot create its own login role so the first apply is run locally.
