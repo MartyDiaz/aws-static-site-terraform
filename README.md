@@ -2,7 +2,7 @@
 
 A static website hosted on S3 behind CloudFront, defined entirely in Terraform and deployed through a GitHub Actions CI/CD pipeline that authenticates to AWS with OIDC (no stored credentials).
 
-Live site: d17jqtlcc2pw7s.cloudfront.net
+Live site: 'd17jqtlcc2pw7s.cloudfront.net'
 
 ## What this project demonstrates
 - Infrastructure as code with Terraform: S3, CloudFront, Origin Access Control, bucket policies, IAM
