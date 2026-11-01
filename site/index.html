@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Martin Diaz – Resume</title>
+  <title>Your Name – Resume</title>
   <meta name="description" content="Resume: Software Integration Test Engineer with AWS Solutions Architect – Associate certification.">
   <style>
     :root {
@@ -60,6 +60,14 @@
       font-size: 1.125rem;
       color: var(--muted);
     }
+
+    .contact {
+      margin: 0.25rem 0 0;
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    .summary { margin: 0; max-width: 42rem; }
 
     h2 {
       margin: 3rem 0 1.25rem;
@@ -149,11 +157,18 @@
 </head>
 <body>
   <header>
-    <h1>Your Name</h1>
+    <h1>Martin Diaz</h1>
     <p class="headline">Software Integration Test Engineer. AWS Certified Solutions Architect – Associate.</p>
+    <p class="contact">Los Angeles, CA. <a href="https://github.com/MartyDiaz">github.com/MartyDiaz</a></p>
+    <!-- Add your LinkedIn link here as a second <a> in the paragraph above once you have the URL. -->
   </header>
 
   <main>
+    <section aria-labelledby="summary">
+      <h2 id="summary">Summary</h2>
+      <p class="summary">Software Integration Test Engineer with 6+ years in avionics systems, specializing in Linux log analysis, network troubleshooting, and customer-facing validation. Pairs that diagnostic depth with an AWS Certified Solutions Architect – Associate certification and a personal project building Terraform and GitHub Actions CI/CD on AWS. Seeking cloud engineer and DevOps roles.</p>
+    </section>
+
     <section aria-labelledby="experience">
       <h2 id="experience">Work experience</h2>
 
@@ -165,11 +180,10 @@
           <p class="place">Irvine, California</p>
           <p class="note">Contract via Yoh Services, 2022 – 2023</p>
           <ul>
-            <li>Executed full-lifecycle integration testing for Inflight Entertainment (IFE) systems across major airline carriers, using proprietary XML and YAML configurations in GitLab to achieve 100% on-time delivery and customer acceptance.</li>
-            <li>Facilitated technical customer reviews to demonstrate, verify, and validate system performance against strict requirement specifications.</li>
-            <li>Parsed multi-system log streams using CLI utilities (grep, awk, sed) to isolate root causes of application failures, accelerating defect triage.</li>
-            <li>Isolated cross-system connectivity issues across isolated network stacks using arp, route, and traceroute, verifying MAC table bindings and IP pathing to resolve packet drops.</li>
-            <li>Documented and tracked software defects in Jira, providing detailed logs, network traces, and root-cause analyses to streamline engineering resolution.</li>
+            <li>Led full-lifecycle integration testing of Inflight Entertainment (IFE) systems for major airline carriers, configuring systems with XML/YAML in GitLab and achieving 100% on-time delivery and customer acceptance.</li>
+            <li>Presented technical customer reviews to demonstrate and validate system performance against requirement specifications.</li>
+            <li>Diagnosed application and network failures by parsing multi-system logs (grep, awk, sed) and tracing connectivity with arp, route, and traceroute, resolving packet drops and speeding up defect triage.</li>
+            <li>Documented defects in Jira with logs, network traces, and root-cause analyses to streamline engineering fixes.</li>
           </ul>
         </div>
       </div>
@@ -180,24 +194,29 @@
           <h3>RMA Test Technician (Contract-To-Hire)</h3>
           <p class="org">General Micro Systems Inc.</p>
           <p class="place">Rancho Cucamonga, California</p>
-          <p class="note">Contract via Kimco Staffing Services, 2018 – 2019</p>
+          <p class="note">Contract via Kimco Staffing Services, 2018</p>
           <ul>
-            <li>Tested and repaired ruggedized network and computing hardware devices for the medical and avionics sectors.</li>
-            <li>Analyzed unit assemblies and circuit diagrams to identify root causes of hardware failure.</li>
-            <li>Diagnosed and repaired over 400 defective units annually.</li>
+            <li>Troubleshot and repaired ruggedized rack servers, embedded boards, and network hardware for medical and avionics customers, restoring 100+ defective units annually.</li>
+            <li>Dissected unit assemblies and circuit diagrams to pinpoint root causes of hardware failure.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section aria-labelledby="education">
-      <h2 id="education">Education</h2>
+    <section aria-labelledby="projects">
+      <h2 id="projects">Projects</h2>
       <div class="entry">
-        <div class="when">2017</div>
+        <div class="when">2026</div>
         <div class="what">
-          <h3>Bachelor of Science in Electrical Engineering</h3>
-          <p class="org">Control System Specialization</p>
-          <p class="place">California State University Long Beach, Long Beach, CA</p>
+          <h3>AWS Static Site with Terraform and CI/CD (Personal Project)</h3>
+          <p class="org">Terraform, AWS (S3, CloudFront, IAM), GitHub Actions</p>
+          <p class="place"><a href="https://github.com/MartyDiaz/aws-static-site-terraform">github.com/MartyDiaz/aws-static-site-terraform</a></p>
+          <ul>
+            <li>Provisioned a private S3 and CloudFront site with Origin Access Control using Terraform, with remote S3 state and native locking.</li>
+            <li>Built a GitHub Actions pipeline that plans on pull requests and applies on merge behind a manual approval gate.</li>
+            <li>Replaced stored AWS keys with OIDC and a least-privilege IAM role scoped to the repository, with read-only IAM access so the pipeline cannot change its own permissions.</li>
+            <li>Diagnosed pipeline failures, including a shared-state conflict and an OIDC token mismatch, by decoding the token claims in CI.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -216,7 +235,7 @@
       <div class="entry">
         <div class="when">June 2021</div>
         <div class="what">
-          <h3>Google IT Automation with Python Class</h3>
+          <h3>Google IT Automation with Python Professional Certification</h3>
           <p class="org">Coursera</p>
           <ul>
             <li>Developed and published a public Python library for system monitoring and automation.</li>
@@ -230,7 +249,9 @@
       <h2 id="skills">Skills</h2>
       <dl class="skills">
         <dt>Cloud &amp; Infrastructure</dt>
-        <dd>AWS (EC2, S3, IAM, VPC, CloudWatch), Cloud Architecture Design</dd>
+        <dd>AWS (EC2, S3, IAM, VPC, CloudWatch, CloudFront), Infrastructure as Code (Terraform), Cloud Architecture Design</dd>
+        <dt>Operating Systems &amp; Networking</dt>
+        <dd>Linux, network diagnostics (arp, route, traceroute)</dd>
         <dt>Programming &amp; Scripting</dt>
         <dd>Python, Bash, YAML, MATLAB</dd>
         <dt>DevOps &amp; Tools</dt>
@@ -238,6 +259,18 @@
         <dt>Hardware</dt>
         <dd>Hardware Testing &amp; Repair, Diagnostic Equipment</dd>
       </dl>
+    </section>
+
+    <section aria-labelledby="education">
+      <h2 id="education">Education</h2>
+      <div class="entry">
+        <div class="when">2017</div>
+        <div class="what">
+          <h3>Bachelor of Science in Electrical Engineering</h3>
+          <p class="org">Control System Specialization</p>
+          <p class="place">California State University Long Beach, Long Beach, CA</p>
+        </div>
+      </div>
     </section>
   </main>
 
