@@ -22,12 +22,12 @@ provider "aws" {
   region = var.aws_region
 }
 
-
+#Static site bucket
 resource "aws_s3_bucket" "site" {
   bucket = var.bucket_name
 }
 
-
+#block public access of statjic site bucket
 resource "aws_s3_bucket_public_access_block" "site" {
   bucket                  = aws_s3_bucket.site.id
   block_public_acls       = true
@@ -36,7 +36,7 @@ resource "aws_s3_bucket_public_access_block" "site" {
   restrict_public_buckets = true
 }
 
-
+#index html object
 resource "aws_s3_object" "index" {
   key          = "index.html"
   bucket       = aws_s3_bucket.site.id
@@ -45,7 +45,7 @@ resource "aws_s3_object" "index" {
   etag         = filemd5("${path.module}/site/index.html")
 }
 
-
+#Static site's cloudfront origin access control
 resource "aws_cloudfront_origin_access_control" "site" {
   name                              = "${var.bucket_name}-oac"
   origin_access_control_origin_type = "s3"
@@ -53,7 +53,7 @@ resource "aws_cloudfront_origin_access_control" "site" {
   signing_protocol                  = "sigv4"
 }
 
-
+#Static Site's cloudfront distribution
 resource "aws_cloudfront_distribution" "site" {
   enabled             = true
   default_root_object = "index.html"
@@ -84,7 +84,7 @@ resource "aws_cloudfront_distribution" "site" {
   }
 }
 
-
+#IAM policy for cloudfront to read bucket.
 data "aws_iam_policy_document" "site" {
   statement {
     sid       = "AllowCloudFrontRead"
@@ -104,7 +104,7 @@ data "aws_iam_policy_document" "site" {
   }
 }
 
-
+#Static site bucket policy 
 resource "aws_s3_bucket_policy" "site" {
   bucket = aws_s3_bucket.site.id
   policy = data.aws_iam_policy_document.site.json

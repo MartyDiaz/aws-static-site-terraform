@@ -1,8 +1,8 @@
 # AWS Static Site with Terraform and GitHub Actions
 
-A static website hosted on S3 behind CloudFront, defined entirely in Terraform and deployed through a GitHub Actions CI/CD pipeline that authenticates to AWS with OIDC (no stored credentials).
+A static website hosted on S3 behind CloudFront, defined entirely in Terraform and deployed through a GitHub Actions CI/CD pipeline that authenticates to AWS with OIDC.
 
-Live site: 'd17jqtlcc2pw7s.cloudfront.net'
+[Live site: ] (d17jqtlcc2pw7s.cloudfront.net)
 
 ## What this project demonstrates
 - Infrastructure as code with Terraform: S3, CloudFront, Origin Access Control, bucket policies, IAM
@@ -52,7 +52,7 @@ On approval, the job exchanges a short-lived GitHub OIDC token for temporary AWS
 **IAM changes are applied manually by design.** Edits to github_oidc.tf or github_actions_policy.tf must be applied from an administrator login, not by the pipeline.The pipeline's plan will still pass for those files, but its apply would be denied.
 
 ## How to deploy your own copy.
-1. Create the state bucket. Terraform can't store state in a bucket that doesn't exist yet so this bucket must be created through the CLI or AWS console. Terraform destroy will not delete this bucket or state.
+1. Create your state bucket. Terraform can't store state in a bucket that doesn't exist yet so this bucket must be created through the CLI or AWS console or second terraform configuration. Terraform destroy will not delete this bucket or state.
 
 2. In main.tf set the backend "s3" block's bucket to your state bucket. 
 
@@ -77,15 +77,16 @@ terraform output cloudfront_domain_name
 In the GitHub repository settings:
 
 Settings > Secrets and variables > Actions > Variables, add:
-AWS_ROLE_ARN: the value of terraform output github_actions_role_arn
-BUCKET_NAME: your site bucket name
+AWS_ROLE_ARN: the value of terraform output github_actions_role_arn.
+BUCKET_NAME: your site bucket name.
+
 Settings > Environments, create an environment named production and add yourself as a required reviewer. This is the approval gate for the apply workflow.
 
 6. Now you can change the site or infrastructure through pull requests.
 
 ## Project next steps
 
-No custom domain. The site uses the default *.cloudfront.net certificate. Adding a domain means requesting an ACM certificate in us-east-1 and a Route 53 or other DNS record.
+No custom domain. The site uses the default *.cloudfront.net certificate. Adding a domain means requesting an ACM certificate and a Route 53 or other DNS record.
 
 Security scanning (tflint, checkov or trivy) are not part of the pipeline yet.
 
